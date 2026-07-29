@@ -48,7 +48,7 @@ class AssociativeArrayNormalizer implements DenormalizerInterface, NormalizerInt
      */
     public function mapToEntity($data)
     {
-        $result = array();
+        $result = [];
         if ($data !== null) {
             foreach ($data as $key => $innerElement) {
                 $result[$key] = $this->innerMapper->mapToEntity($innerElement);

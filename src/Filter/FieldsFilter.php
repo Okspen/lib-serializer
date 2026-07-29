@@ -54,7 +54,7 @@ class FieldsFilter
      */
     protected function filterByConfig($data, FieldsConfig $fieldsConfig)
     {
-        $result = array();
+        $result = [];
         foreach ($data as $fieldName => $value) {
             if ($fieldsConfig->isIncluded($fieldName)) {
                 if (is_array($value)) {

@@ -18,10 +18,10 @@ class ResultMetadataNormalizer implements NormalizerInterface
     {
         $filter = $result->getFilter();
 
-        $data = array(
+        $data = [
             'total' => $result->getTotalCount(),
             'limit' => $filter ? $filter->getLimit() : null,
-        );
+        ];
 
         if ($result->getAfter() !== null) {
             $data['cursors']['after'] = $result->getAfter();

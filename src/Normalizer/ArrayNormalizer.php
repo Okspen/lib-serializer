@@ -33,7 +33,7 @@ class ArrayNormalizer implements DenormalizerInterface, ContextAwareNormalizerIn
      */
     public function mapToEntity($data)
     {
-        $result = array();
+        $result = [];
         if ($data !== null) {
             foreach ($data as $innerElement) {
                 $result[] = $this->innerMapper->mapToEntity($innerElement);
@@ -44,7 +44,7 @@ class ArrayNormalizer implements DenormalizerInterface, ContextAwareNormalizerIn
 
     public function mapFromEntity($entity, ?NormalizationContextInterface $context = null)
     {
-        $result = array();
+        $result = [];
         if ($entity !== null) {
             foreach ($entity as $innerElement) {
                 $result[] = $this->innerMapper->mapFromEntity($innerElement, $context);

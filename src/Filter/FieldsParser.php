@@ -35,8 +35,8 @@ class FieldsParser
         }
 
         $defaultsIncluded = false;
-        $includedFields = array();
-        $fieldExtensions = array();
+        $includedFields = [];
+        $fieldExtensions = [];
 
         foreach ($fields as $fieldDefinition) {
             // todo: take curly braces? see commented test-case for possible usage
@@ -65,6 +65,6 @@ class FieldsParser
      */
     protected function createWithDefaultsIncluded()
     {
-        return new FieldsConfig(true, array(), array());
+        return new FieldsConfig(true, [], []);
     }
 }

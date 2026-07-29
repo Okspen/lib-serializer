@@ -59,13 +59,13 @@ class ResultNormalizer implements ContextAwareNormalizerInterface, DenormalizerI
      */
     public function mapFromEntity($entity, ?NormalizationContextInterface $context = null)
     {
-        return array(
+        return [
             $this->itemsKey => $this->mapItemsFromEntity(
                 $entity->getItems(),
                 $context !== null ? $context->createScopedContext($this->itemsKey) : null
             ),
             '_metadata' => $this->mapMetadataFromEntity($entity),
-        );
+        ];
     }
 
     /**

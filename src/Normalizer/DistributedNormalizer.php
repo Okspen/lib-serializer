@@ -34,17 +34,17 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
     /**
      * @var FieldAccessorInterface[]
      */
-    protected $fieldAccessors = array();
+    protected $fieldAccessors = [];
 
     /**
      * @var array of boolean
      */
-    protected $fieldDefault = array();
+    protected $fieldDefault = [];
 
     /**
      * @var DenormalizerInterface[]|NormalizerInterface[]
      */
-    protected $fieldNormalizers = array();
+    protected $fieldNormalizers = [];
 
     /**
      * @param ContextAwareNormalizerFactory            $factory
@@ -102,7 +102,7 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
      */
     public function mapToEntity($data)
     {
-        $additional = array();
+        $additional = [];
         if (is_array($data)) {
             foreach ($data as $key => $value) {
                 if (
@@ -142,7 +142,7 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
         }
 
         $fields = $context !== null ? $context->getFields() : null;
-        $scope = $context !== null ? $context->getScope() : array();
+        $scope = $context !== null ? $context->getScope() : [];
         $data = $this->fieldsFilter->filter($data, $fields, $scope);
 
         $fieldsConfig = $this->fieldsParser->parseFields($fields, $scope);

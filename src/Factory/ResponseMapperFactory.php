@@ -23,7 +23,7 @@ class ResponseMapperFactory implements ResponseMapperFactoryInterface
     public function __construct(NormalizerInterface $defaultMapper)
     {
         $this->defaultMapper = $defaultMapper;
-        $this->mappers = array();
+        $this->mappers = [];
     }
 
     /**
