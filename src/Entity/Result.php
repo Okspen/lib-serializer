@@ -2,7 +2,12 @@
 
 namespace Paysera\Component\Serializer\Entity;
 
-class Result implements \IteratorAggregate, ResultInterface
+use ArrayIterator;
+use BadMethodCallException;
+use IteratorAggregate;
+use Traversable;
+
+class Result implements IteratorAggregate, ResultInterface
 {
     /**
      * @var int
@@ -203,12 +208,12 @@ class Result implements \IteratorAggregate, ResultInterface
      *
      * @param $resultCount
      * @return null
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     public function calculateTotalCount($resultCount)
     {
         if (!$this->getFilter()) {
-            throw new \BadMethodCallException('filter must be set before calling this method');
+            throw new BadMethodCallException('filter must be set before calling this method');
         }
 
         if (
@@ -225,11 +230,9 @@ class Result implements \IteratorAggregate, ResultInterface
 
     /**
      * Retrieve an external iterator
-     *
-     * @return \Traversable
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
-        return new \ArrayIterator($this->items);
+        return new ArrayIterator($this->items);
     }
 }
