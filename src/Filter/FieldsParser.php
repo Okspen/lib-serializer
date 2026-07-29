@@ -2,6 +2,8 @@
 
 namespace Paysera\Component\Serializer\Filter;
 
+use InvalidArgumentException;
+
 class FieldsParser
 {
 
@@ -23,7 +25,7 @@ class FieldsParser
     /**
      * @param null|array $fields
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return FieldsConfig
      */
     public function parseUnscopedFields(?array $fields = null)
@@ -41,7 +43,7 @@ class FieldsParser
             foreach (explode(',', $fieldDefinition) as $field) {
                 $list = explode('.', $field, 2);
                 if (isset($list[1]) && $list[1] === '') {
-                    throw new \InvalidArgumentException('Invalid field provided, field cannot end with a dot');
+                    throw new InvalidArgumentException('Invalid field provided, field cannot end with a dot');
                 }
                 $name = $list[0];
                 $extension = isset($list[1]) ? $list[1] : null;

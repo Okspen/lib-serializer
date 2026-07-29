@@ -2,6 +2,7 @@
 
 namespace Paysera\Component\Serializer\Tests\Filter;
 
+use ArrayObject;
 use Paysera\Component\Serializer\Filter\FieldsFilter;
 use Paysera\Component\Serializer\Filter\FieldsParser;
 use PHPUnit\Framework\TestCase;
@@ -173,7 +174,7 @@ class FieldsFilterTest extends TestCase
                     5 => array('id' => 125, 'description' => 'abc3'),
                 )),
                 'fields' => array('payments.id'),
-                'result' => array('payments' => new \ArrayObject()),
+                'result' => array('payments' => new ArrayObject()),
             ),
             'Takes all fields if wildcard on parent specified' => array(
                 'data' => array('a1' => array('a2' => array('a3' => array('a4' => 'value1', 'a5' => 'value2')))),
@@ -208,7 +209,7 @@ class FieldsFilterTest extends TestCase
             'Leaves curly braces if all items are filtered' => array(
                 'data' => array('a1' => '1', 'a2' => '2', 'a3' => '3', 'a4' => '4'),
                 'fields' => array('b1'),
-                'result' => new \ArrayObject(),
+                'result' => new ArrayObject(),
             ),
             'Leaves simple array if all items are filtered' => array(
                 'data' => array('a1' => array('a', 'b', 'c')),
@@ -277,7 +278,7 @@ class FieldsFilterTest extends TestCase
                 )),
                 'fields' => array('scope.payments.id'),
                 'scope' => array('scope'),
-                'result' => array('payments' => new \ArrayObject()),
+                'result' => array('payments' => new ArrayObject()),
             ),
             'Takes all fields if wildcard on parent specified' => array(
                 'data' => array('a1' => array('a2' => array('a3' => array('a4' => 'value1', 'a5' => 'value2')))),

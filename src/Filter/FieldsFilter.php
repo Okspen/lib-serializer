@@ -2,6 +2,8 @@
 
 namespace Paysera\Component\Serializer\Filter;
 
+use ArrayObject;
+
 class FieldsFilter
 {
     /**
@@ -33,7 +35,7 @@ class FieldsFilter
         if ($this->isAssociativeArray($data)) {
             $result = $this->filterByConfig($data, $fieldsConfig);
             if (is_array($result) && count($result) === 0) {
-                $result = new \ArrayObject();
+                $result = new ArrayObject();
             }
             return $result;
         } else {

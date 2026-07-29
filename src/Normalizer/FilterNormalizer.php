@@ -25,7 +25,7 @@ class FilterNormalizer extends BaseDenormalizer implements NormalizerInterface
      *
      * @return mixed
      *
-     * @throws \Paysera\Component\Serializer\Exception\InvalidDataException
+     * @throws InvalidDataException
      */
     public function mapToEntity($data)
     {

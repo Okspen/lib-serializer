@@ -13,12 +13,12 @@ class ContextAwareNormalizerFactory
 {
 
     /**
-     * @var \Paysera\Component\Serializer\Filter\FieldsFilter
+     * @var FieldsFilter
      */
     protected $fieldsFilter;
 
     /**
-     * @var \Paysera\Component\Serializer\Filter\FieldsParser
+     * @var FieldsParser
      */
     protected $fieldsParser;
 

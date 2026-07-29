@@ -4,6 +4,7 @@ namespace Paysera\Component\Serializer\Normalizer;
 
 use Paysera\Component\Serializer\Accessor\FieldAccessorInterface;
 use Paysera\Component\Serializer\Entity\NormalizationContextInterface;
+use Paysera\Component\Serializer\Exception\InvalidDataException;
 use Paysera\Component\Serializer\Factory\ContextAwareNormalizerFactory;
 use Paysera\Component\Serializer\Filter\FieldsFilter;
 use Paysera\Component\Serializer\Filter\FieldsParser;
@@ -16,12 +17,12 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
     protected $factory;
 
     /**
-     * @var \Paysera\Component\Serializer\Filter\FieldsFilter
+     * @var FieldsFilter
      */
     protected $fieldsFilter;
 
     /**
-     * @var \Paysera\Component\Serializer\Filter\FieldsParser
+     * @var FieldsParser
      */
     protected $fieldsParser;
 
@@ -46,10 +47,10 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
     protected $fieldNormalizers = array();
 
     /**
-     * @param \Paysera\Component\Serializer\Factory\ContextAwareNormalizerFactory $factory
-     * @param \Paysera\Component\Serializer\Filter\FieldsParser                   $fieldsParser
-     * @param \Paysera\Component\Serializer\Filter\FieldsFilter                   $fieldsFilter
-     * @param DenormalizerInterface|NormalizerInterface                       $normalizer
+     * @param ContextAwareNormalizerFactory            $factory
+     * @param FieldsParser                             $fieldsParser
+     * @param FieldsFilter                             $fieldsFilter
+     * @param DenormalizerInterface|NormalizerInterface $normalizer
      */
     public function __construct(
         ContextAwareNormalizerFactory $factory,
@@ -97,7 +98,7 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
      *
      * @return mixed
      *
-     * @throws \Paysera\Component\Serializer\Exception\InvalidDataException
+     * @throws InvalidDataException
      */
     public function mapToEntity($data)
     {

@@ -5,6 +5,7 @@ namespace Paysera\Component\Serializer\Normalizer;
 use Paysera\Component\Serializer\Entity\Filter;
 use Paysera\Component\Serializer\Entity\NormalizationContextInterface;
 use Paysera\Component\Serializer\Entity\Result;
+use Paysera\Component\Serializer\Exception\InvalidDataException;
 
 class ResultNormalizer implements ContextAwareNormalizerInterface, DenormalizerInterface
 {
@@ -74,7 +75,7 @@ class ResultNormalizer implements ContextAwareNormalizerInterface, DenormalizerI
      *
      * @return mixed
      *
-     * @throws \Paysera\Component\Serializer\Exception\InvalidDataException
+     * @throws InvalidDataException
      */
     public function mapToEntity($data)
     {
