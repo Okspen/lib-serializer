@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   global classes (`ArrayIterator`, `ArrayObject`, `DateTime`, `DateTimeZone`, `Exception` and
   the SPL exceptions) and fully qualified `Paysera\...` references in docblocks. No behaviour
   change.
+- Replaced long array syntax (`array(...)`) with short syntax (`[...]`) throughout the library.
+  No behaviour change.
 
 ## 3.4.0
 ### Added
