@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.5.0
+### Fixed
+- Declared native `\Traversable` return type on `Result::getIterator()`, resolving the PHP 8.1
+  tentative return type deprecation.
+- `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
+  resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
+
+### Removed
+- Dropped support for PHP 7.1, 7.2 and 7.3. Minimum supported version is now PHP 7.4.
+
+### Changed
+- **BC break:** any subclass of `Result` that overrides `getIterator()` must now declare a
+  compatible return type (`\Traversable` or a subtype such as `\Iterator`).
+
 ## 3.4.0
 ### Added
 - PHP 8.4 support, removed implicitly nullable parameter declarations.
