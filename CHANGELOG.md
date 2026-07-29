@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **BC break:** any subclass of `Result` that overrides `getIterator()` must now declare a
   compatible return type (`\Traversable` or a subtype such as `\Iterator`).
+- Replaced leading-backslash class references with `use` statements throughout the library —
+  global classes (`ArrayIterator`, `ArrayObject`, `DateTime`, `DateTimeZone`, `Exception` and
+  the SPL exceptions) and fully qualified `Paysera\...` references in docblocks. No behaviour
+  change.
 
 ## 3.4.0
 ### Added
