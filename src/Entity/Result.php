@@ -12,7 +12,7 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * @var int
      */
-    protected $totalCount = 0;
+    protected $totalCount;
 
     /**
      * @var boolean|null
@@ -42,12 +42,14 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * @var mixed[]
      */
-    protected $items = [];
+    protected $items;
 
 
     public function __construct(?Filter $filter = null)
     {
         $this->filter = $filter;
+        $this->totalCount = 0;
+        $this->items = [];
     }
 
     /**

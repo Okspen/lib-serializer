@@ -13,6 +13,7 @@ class FilterNormalizer extends BaseDenormalizer implements NormalizerInterface
 
     public function __construct($orderByFields = [], $defaultLimit = 20, $maxLimit = 200)
     {
+        parent::__construct();
         $this->defaultLimit = $defaultLimit;
         $this->maxLimit = $maxLimit;
         $this->orderByFields = $orderByFields;

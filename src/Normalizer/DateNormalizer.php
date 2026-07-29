@@ -20,6 +20,7 @@ class DateNormalizer extends BaseDenormalizer implements NormalizerInterface
 
     public function __construct($format, $remoteTimezone = null)
     {
+        parent::__construct();
         $this->format = $format;
         $this->remoteTimezone = $remoteTimezone !== null ? $remoteTimezone : $this->getLocalTimezone();
     }
