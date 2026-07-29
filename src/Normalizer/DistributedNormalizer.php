@@ -47,9 +47,9 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
     protected $fieldNormalizers = [];
 
     /**
-     * @param ContextAwareNormalizerFactory            $factory
-     * @param FieldsParser                             $fieldsParser
-     * @param FieldsFilter                             $fieldsFilter
+     * @param ContextAwareNormalizerFactory             $factory
+     * @param FieldsParser                              $fieldsParser
+     * @param FieldsFilter                              $fieldsFilter
      * @param DenormalizerInterface|NormalizerInterface $normalizer
      */
     public function __construct(

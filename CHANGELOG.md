@@ -4,25 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 3.5.0
-### Fixed
-- Declared native `\Traversable` return type on `Result::getIterator()`, resolving the PHP 8.1
-  tentative return type deprecation.
-- `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
-  resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
-
-### Removed
-- Dropped support for PHP 7.1, 7.2 and 7.3. Minimum supported version is now PHP 7.4.
-
+## 4.0.0
 ### Changed
-- **BC break:** any subclass of `Result` that overrides `getIterator()` must now declare a
-  compatible return type (`\Traversable` or a subtype such as `\Iterator`).
+- **BC break:** `Result::getIterator()` now declares a native `\Traversable` return type,
+  resolving the PHP 8.1 tentative return type deprecation. Any subclass that overrides it must
+  now declare a compatible return type (`\Traversable` or a subtype such as `\Iterator`).
+- Narrowed the `phpunit/phpunit` development requirement to `^9.3` — the version that introduced
+  the `<coverage>` configuration element used by `phpunit.xml.dist`.
 - Replaced leading-backslash class references with `use` statements throughout the library —
   global classes (`ArrayIterator`, `ArrayObject`, `DateTime`, `DateTimeZone`, `Exception` and
   the SPL exceptions) and fully qualified `Paysera\...` references in docblocks. No behaviour
   change.
 - Replaced long array syntax (`array(...)`) with short syntax (`[...]`) throughout the library.
   No behaviour change.
+
+### Removed
+- **BC break:** dropped support for PHP 7.1, 7.2 and 7.3. Minimum supported version is now
+  PHP 7.4.
+
+### Fixed
+- `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
+  resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
+- `DateNormalizer::mapToEntity()` no longer passes `null` to `DateTime::createFromFormat()`,
+  resolving a PHP 8.1 deprecation. `null` input still raises `InvalidDataException` as before.
+- Iterating a `Result` whose items were never set no longer fails — `$items` now defaults to an
+  empty array, so `getIterator()` and `getItems()` honour their documented contracts instead of
+  raising a `TypeError` on PHP 8 (an `InvalidArgumentException` on PHP 7.4).
 
 ## 3.4.0
 ### Added

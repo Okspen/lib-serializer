@@ -59,4 +59,4 @@ class ResponseMapperFactory implements ResponseMapperFactoryInterface
         }
         return $key !== null ? $this->mappers[$key] : $this->defaultMapper;
     }
-} 
+}

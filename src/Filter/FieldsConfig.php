@@ -66,4 +66,4 @@ class FieldsConfig
     {
         return $this->defaultsIncluded;
     }
-} 
+}

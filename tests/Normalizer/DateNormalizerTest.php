@@ -67,4 +67,29 @@ class DateNormalizerTest extends TestCase
         $this->expectException(InvalidDataException::class);
         $service->mapToEntity('2013-02-31 12:00:00');
     }
+
+    public function testMapToEntity_null_date_throws_exception_without_deprecation()
+    {
+        $service = new DateNormalizer('Y-m-d H:i:s', new DateTimeZone('Etc/GMT+0'));
+
+        $deprecations = [];
+        set_error_handler(
+            function ($errno, $errstr) use (&$deprecations) {
+                $deprecations[] = $errstr;
+                return true;
+            },
+            E_DEPRECATED
+        );
+
+        try {
+            $service->mapToEntity(null);
+            $this->fail('Expected InvalidDataException to be thrown');
+        } catch (InvalidDataException $exception) {
+            // expected
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertSame([], $deprecations);
+    }
 }
