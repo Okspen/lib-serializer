@@ -3,6 +3,7 @@
 namespace Paysera\Component\Serializer\Tests\Entity;
 
 use Paysera\Component\Serializer\Entity\Filter;
+use Paysera\Component\Serializer\Entity\FollowUpFilter;
 use Paysera\Component\Serializer\Entity\Result;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -30,6 +31,18 @@ class FilterTest extends TestCase
     {
         $this->assertNull((new Filter())->setAfter('cursor')->getOffset());
         $this->assertNull((new Filter())->setBefore('cursor')->getOffset());
+    }
+
+    public function testFollowUpFilterInheritsOffsetDefault()
+    {
+        $filter = (new ReflectionClass(FollowUpFilter::class))->newInstanceWithoutConstructor();
+
+        $this->assertSame(0, $filter->getOffset());
+    }
+
+    public function testFollowUpFilterKeepsConstructorOffset()
+    {
+        $this->assertSame(10, (new FollowUpFilter(5, 10))->getOffset());
     }
 
     public function testCalculateTotalCountForSubclassNotCallingParentConstructor()
