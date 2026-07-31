@@ -48,6 +48,7 @@ class Result implements IteratorAggregate, ResultInterface
     public function __construct(?Filter $filter = null)
     {
         $this->filter = $filter;
+        $this->items = [];
     }
 
     /**

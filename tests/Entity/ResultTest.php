@@ -10,6 +10,20 @@ use ReturnTypeWillChange;
 
 class ResultTest extends TestCase
 {
+    public function testIterateResultWithoutItems()
+    {
+        $result = new Result();
+
+        $this->assertSame([], iterator_to_array($result));
+    }
+
+    public function testGetItemsReturnsArrayWhenItemsNotSet()
+    {
+        $result = new Result();
+
+        $this->assertSame([], $result->getItems());
+    }
+
     public function testIterateResultWithItems()
     {
         $result = (new Result())->setItems([1, 2, 3]);
