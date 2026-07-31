@@ -27,9 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
 - `DateNormalizer::mapToEntity()` no longer passes `null` to `DateTime::createFromFormat()`,
   resolving a PHP 8.1 deprecation. `null` input still raises `InvalidDataException` as before.
-- Iterating a `Result` whose items were never set no longer fails — `$items` now defaults to an
-  empty array, so `getIterator()` and `getItems()` honour their documented contracts instead of
-  raising a `TypeError` on PHP 8 (an `InvalidArgumentException` on PHP 7.4).
 
 ## 3.4.0
 ### Added
