@@ -20,7 +20,7 @@ class Filter
     /**
      * @var int
      */
-    protected $offset;
+    protected $offset = 0;
 
     /**
      * null means no limit
@@ -37,11 +37,6 @@ class Filter
      * @var string
      */
     protected $before;
-
-    public function __construct()
-    {
-        $this->offset = 0;
-    }
 
     /**
      * Sets orderBy

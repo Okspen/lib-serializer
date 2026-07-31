@@ -6,12 +6,7 @@ use Paysera\Component\Serializer\Exception\InvalidDataException;
 
 abstract class BaseDenormalizer implements DenormalizerInterface
 {
-    protected $availableKeysCheckIgnored;
-
-    public function __construct()
-    {
-        $this->availableKeysCheckIgnored = false;
-    }
+    protected $availableKeysCheckIgnored = false;
 
     /**
      * Ignores available keys check

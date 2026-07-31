@@ -12,7 +12,7 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * @var int
      */
-    protected $totalCount;
+    protected $totalCount = 0;
 
     /**
      * @var boolean|null
@@ -42,14 +42,12 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * @var mixed[]
      */
-    protected $items;
+    protected $items = [];
 
 
     public function __construct(?Filter $filter = null)
     {
         $this->filter = $filter;
-        $this->totalCount = 0;
-        $this->items = [];
     }
 
     /**
@@ -232,8 +230,11 @@ class Result implements IteratorAggregate, ResultInterface
 
     /**
      * Retrieve an external iterator
+     *
+     * @return Traversable
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator()
     {
         return new ArrayIterator($this->items);
     }

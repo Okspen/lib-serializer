@@ -16,7 +16,6 @@ class FollowUpFilter extends Filter
 
     public function __construct($remainingCount, $offset)
     {
-        parent::__construct();
         $this->remainingCount = $remainingCount;
         $this->offset = $offset;
     }

@@ -4,11 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 4.0.0
+## 3.5.0
 ### Changed
-- **BC break:** `Result::getIterator()` now declares a native `\Traversable` return type,
-  resolving the PHP 8.1 tentative return type deprecation. Any subclass that overrides it must
-  now declare a compatible return type (`\Traversable` or a subtype such as `\Iterator`).
 - Narrowed the `phpunit/phpunit` development requirement to `^9.3` — the version that introduced
   the `<coverage>` configuration element used by `phpunit.xml.dist`.
 - Replaced leading-backslash class references with `use` statements throughout the library —
@@ -19,10 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   No behaviour change.
 
 ### Removed
-- **BC break:** dropped support for PHP 7.1, 7.2 and 7.3. Minimum supported version is now
-  PHP 7.4.
+- Dropped support for PHP 7.1, 7.2 and 7.3. Minimum supported version is now PHP 7.4. Projects
+  still on those versions resolve to 3.4.x and are unaffected.
 
 ### Fixed
+- `Result::getIterator()` is marked `#[\ReturnTypeWillChange]`, silencing the PHP 8.1 tentative
+  return type deprecation without changing the signature. The native `\Traversable` return type
+  is deferred to 4.0.0, where it will be batched with the other type additions.
 - `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
   resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
 - `DateNormalizer::mapToEntity()` no longer passes `null` to `DateTime::createFromFormat()`,
