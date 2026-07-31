@@ -34,17 +34,17 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
     /**
      * @var FieldAccessorInterface[]
      */
-    protected $fieldAccessors = [];
+    protected $fieldAccessors;
 
     /**
      * @var array of boolean
      */
-    protected $fieldDefault = [];
+    protected $fieldDefault;
 
     /**
      * @var DenormalizerInterface[]|NormalizerInterface[]
      */
-    protected $fieldNormalizers = [];
+    protected $fieldNormalizers;
 
     /**
      * @param ContextAwareNormalizerFactory             $factory
@@ -62,6 +62,9 @@ class DistributedNormalizer implements DenormalizerInterface, ContextAwareNormal
         $this->fieldsParser = $fieldsParser;
         $this->fieldsFilter = $fieldsFilter;
         $this->normalizer = $normalizer;
+        $this->fieldAccessors = [];
+        $this->fieldDefault = [];
+        $this->fieldNormalizers = [];
     }
 
     /**
