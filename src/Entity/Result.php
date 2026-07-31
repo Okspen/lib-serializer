@@ -5,6 +5,7 @@ namespace Paysera\Component\Serializer\Entity;
 use ArrayIterator;
 use BadMethodCallException;
 use IteratorAggregate;
+use ReturnTypeWillChange;
 use Traversable;
 
 class Result implements IteratorAggregate, ResultInterface
@@ -232,7 +233,7 @@ class Result implements IteratorAggregate, ResultInterface
      *
      * @return Traversable
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->items);
