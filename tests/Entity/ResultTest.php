@@ -47,6 +47,19 @@ class ResultTest extends TestCase
     }
 
     /**
+     * Reflection-based instantiation is how ORM hydration, reflection serializers and
+     * PHPUnit's disableOriginalConstructor() build objects. Pins the defaults to the
+     * property declarations: a constructor assignment would not cover this path.
+     */
+    public function testItemsDefaultAppliesWhenConstructorIsBypassed()
+    {
+        $result = (new ReflectionClass(Result::class))->newInstanceWithoutConstructor();
+
+        $this->assertSame([], $result->getItems());
+        $this->assertSame([], iterator_to_array($result));
+    }
+
+    /**
      * The PHP 8.1 tentative return type notice is emitted when the class is
      * declared, not when getIterator() is called, so it cannot be caught with an
      * error handler from inside a test. Assert the declaration instead: either a

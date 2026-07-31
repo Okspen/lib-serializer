@@ -29,11 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `DateTime::createFromFormat()`, resolving a PHP 8.1 deprecation. `null` still raises
   `InvalidDataException`, now reporting `Date must be provided` rather than a message blaming
   the configured format.
-- `Result::__construct()` initialises `$items` to an empty array, so iterating a `Result` whose
-  items were never set no longer raises a `TypeError` on PHP 8 (an `InvalidArgumentException` on
-  PHP 7.4) and `getItems()` honours its documented `@return mixed[]`. Instances created without
-  the constructor — `ReflectionClass::newInstanceWithoutConstructor()`, and the ORM hydration and
-  mocking that build on it — are unaffected and still start with a `null` `$items`.
+- `Result::$items` now defaults to an empty array, so iterating a `Result` whose items were never
+  set no longer raises a `TypeError` on PHP 8 (an `InvalidArgumentException` on PHP 7.4) and
+  `getItems()` honours its documented `@return mixed[]`. The default lives on the property
+  declaration rather than in the constructor, so it also applies to instances built without one —
+  `ReflectionClass::newInstanceWithoutConstructor()`, and the ORM hydration and mocking that build
+  on it.
 
 ## 3.4.0
 ### Added

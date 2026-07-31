@@ -42,13 +42,11 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * @var mixed[]
      */
-    protected $items;
-
+    protected $items = [];
 
     public function __construct(?Filter $filter = null)
     {
         $this->filter = $filter;
-        $this->items = [];
     }
 
     /**
