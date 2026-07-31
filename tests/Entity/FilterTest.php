@@ -4,7 +4,7 @@ namespace Paysera\Component\Serializer\Tests\Entity;
 
 use Paysera\Component\Serializer\Entity\Filter;
 use Paysera\Component\Serializer\Entity\FollowUpFilter;
-use Paysera\Component\Serializer\Entity\Result;
+use Paysera\Component\Serializer\Tests\Fixtures\OwnConstructorFilter;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -43,31 +43,5 @@ class FilterTest extends TestCase
     public function testFollowUpFilterKeepsConstructorOffset()
     {
         $this->assertSame(10, (new FollowUpFilter(5, 10))->getOffset());
-    }
-
-    public function testCalculateTotalCountForSubclassNotCallingParentConstructor()
-    {
-        $result = (new Result(new OwnConstructorFilter()))->setItems([1, 2]);
-
-        $this->assertSame(2, $result->calculateTotalCount(2));
-        $this->assertSame(2, $result->getTotalCount());
-    }
-}
-
-/**
- * Filter has no constructor and is designed for subclassing, so descendants are
- * not obliged to call parent::__construct(). Pins that contract down: the offset
- * default has to live on the property declaration for this to keep working.
- */
-class OwnConstructorFilter extends Filter
-{
-    /**
-     * @var string|null
-     */
-    protected $status;
-
-    public function __construct($status = null)
-    {
-        $this->status = $status;
     }
 }

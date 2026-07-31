@@ -3,6 +3,7 @@
 namespace Paysera\Component\Serializer\Tests\Entity;
 
 use Paysera\Component\Serializer\Entity\Result;
+use Paysera\Component\Serializer\Tests\Fixtures\OwnConstructorFilter;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -57,6 +58,20 @@ class ResultTest extends TestCase
 
         $this->assertSame([], $result->getItems());
         $this->assertSame([], iterator_to_array($result));
+    }
+
+    /**
+     * Filter carries its offset default on the property declaration, so a descendant
+     * that declares its own constructor without calling parent::__construct() still
+     * reports 0 rather than null — which is what keeps this calculation from silently
+     * skipping and reporting a total of 0 for a non-empty result set.
+     */
+    public function testCalculateTotalCountForFilterSubclassNotCallingParentConstructor()
+    {
+        $result = (new Result(new OwnConstructorFilter()))->setItems([1, 2]);
+
+        $this->assertSame(2, $result->calculateTotalCount(2));
+        $this->assertSame(2, $result->getTotalCount());
     }
 
     /**
