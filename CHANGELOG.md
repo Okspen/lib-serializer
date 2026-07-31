@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 3.5.0
 ### Changed
+- `DateNormalizer::mapToEntity()` rejects `null` up front instead of passing it to
+  `DateTime::createFromFormat()`, resolving a PHP 8.1 deprecation. `null` still raises
+  `InvalidDataException`, so `catch` blocks are unaffected, but the message changes from
+  `Provided date format is invalid` to `Date must be provided` — the old text blamed the
+  configured format for what is really a missing input. Consumers that match on
+  `getMessage()` rather than the exception type, such as API error-mapping layers, need to
+  account for the new string.
 - Narrowed the `phpunit/phpunit` development requirement to `^9.3` — the version that introduced
   the `<coverage>` configuration element used by `phpunit.xml.dist`.
 - Replaced leading-backslash class references with `use` statements throughout the library —
@@ -25,10 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   is deferred to 4.0.0, where it will be batched with the other type additions.
 - `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
   resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
-- `DateNormalizer::mapToEntity()` rejects `null` up front instead of passing it to
-  `DateTime::createFromFormat()`, resolving a PHP 8.1 deprecation. `null` still raises
-  `InvalidDataException`, now reporting `Date must be provided` rather than a message blaming
-  the configured format.
 - `Result::$items` now defaults to an empty array, so iterating a `Result` whose items were never
   set no longer raises a `TypeError` on PHP 8 (an `InvalidArgumentException` on PHP 7.4) and
   `getItems()` honours its documented `@return mixed[]`. The default lives on the property
