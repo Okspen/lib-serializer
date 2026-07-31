@@ -6,7 +6,6 @@ use InvalidArgumentException;
 
 class FieldsParser
 {
-
     /**
      * @param null|array $fields
      * @param array $scope

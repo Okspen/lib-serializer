@@ -7,7 +7,6 @@ use JsonpCallbackValidator;
 
 class Jsonp implements EncoderInterface
 {
-
     protected $jsonEncoder;
 
     protected $callbackValidator;

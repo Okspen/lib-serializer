@@ -6,7 +6,6 @@ use Paysera\Component\Serializer\Entity\Result;
 
 class ResultMetadataNormalizer implements NormalizerInterface
 {
-
     /**
      * Maps some structure to raw data. Usually entity object to array
      *
