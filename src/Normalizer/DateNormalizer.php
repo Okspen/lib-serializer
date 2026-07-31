@@ -31,9 +31,13 @@ class DateNormalizer extends BaseDenormalizer implements NormalizerInterface
      */
     public function mapToEntity($data)
     {
+        if ($data === null) {
+            throw new InvalidDataException('Date must be provided');
+        }
+
         $date = DateTime::createFromFormat(
             $this->format,
-            $data ?? '',
+            $data,
             $this->remoteTimezone
         );
         if ($date === false) {

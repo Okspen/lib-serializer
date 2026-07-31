@@ -25,8 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   is deferred to 4.0.0, where it will be batched with the other type additions.
 - `CamelCaseToSnakeCaseConverter::convert()` no longer passes `null` to `preg_replace()`,
   resolving a PHP 8.1 deprecation. Passing `null` still returns an empty string as before.
-- `DateNormalizer::mapToEntity()` no longer passes `null` to `DateTime::createFromFormat()`,
-  resolving a PHP 8.1 deprecation. `null` input still raises `InvalidDataException` as before.
+- `DateNormalizer::mapToEntity()` rejects `null` up front instead of passing it to
+  `DateTime::createFromFormat()`, resolving a PHP 8.1 deprecation. `null` still raises
+  `InvalidDataException`, now reporting `Date must be provided` rather than a message blaming
+  the configured format.
 - `Result::__construct()` initialises `$items` to an empty array, so iterating a `Result` whose
   items were never set no longer raises a `TypeError` on PHP 8 (an `InvalidArgumentException` on
   PHP 7.4) and `getItems()` honours its documented `@return mixed[]`. Instances created without

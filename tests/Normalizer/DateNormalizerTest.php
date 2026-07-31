@@ -85,7 +85,7 @@ class DateNormalizerTest extends TestCase
             $service->mapToEntity(null);
             $this->fail('Expected InvalidDataException to be thrown');
         } catch (InvalidDataException $exception) {
-            // expected
+            $this->assertSame('Date must be provided', $exception->getMessage());
         } finally {
             restore_error_handler();
         }
