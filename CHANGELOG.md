@@ -13,12 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   configured format for what is really a missing input. Consumers that match on
   `getMessage()` rather than the exception type, such as API error-mapping layers, need to
   account for the new string.
-- `DistributedNormalizer` initialises `$fieldAccessors`, `$fieldDefault` and `$fieldNormalizers`
-  in the constructor rather than on the property declarations, following the style guide's
-  default-property-values rule. The constructor takes four required arguments, so no real code
-  path can skip it; the difference is observable only in test doubles built with
-  `disableOriginalConstructor()`, where the three properties are `null` instead of `[]` and
-  iterating them warns rather than being a no-op.
 - Narrowed the `phpunit/phpunit` development requirement to `^9.3` — the version that introduced
   the `<coverage>` configuration element used by `phpunit.xml.dist`.
 - Replaced leading-backslash class references with `use` statements throughout the library —
