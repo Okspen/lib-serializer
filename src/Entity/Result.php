@@ -206,8 +206,8 @@ class Result implements IteratorAggregate, ResultInterface
     /**
      * Try to calculate total result count, in case all results are fetched.
      *
-     * @param $resultCount
-     * @return null
+     * @param int $resultCount
+     * @return int|null the calculated total count, or null when it cannot be determined
      * @throws BadMethodCallException
      */
     public function calculateTotalCount($resultCount)
